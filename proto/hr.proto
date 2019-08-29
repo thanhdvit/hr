@@ -1,0 +1,28 @@
+// protoc proto/hr.proto --go_out=plugins=grpc:.
+
+syntax = "proto3";
+
+package proto;
+
+message Employee {
+    int32 employee_id = 1;
+    string employee_code = 2;
+    string full_name = 3;
+    string job_title = 4;
+    int32 legal_id = 5;
+    string legal_name = 6;
+    int32 department_id = 7;
+    string department_name = 8;
+}
+
+message EmployeeReq {
+    string employee_code = 1;
+}
+
+message EmployeeRes {
+    Employee employee = 1;
+}
+
+service EmployeeService {
+    rpc getEmployee(EmployeeReq) returns (EmployeeRes);
+}

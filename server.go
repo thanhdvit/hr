@@ -6,7 +6,7 @@ import (
 	"net"
 
 	lis "github.com/thanhdvit/hr/db/lis"
-	pd "github.com/thanhdvit/hr/server"
+	pd "github.com/thanhdvit/hr/impl"
 	grpc "google.golang.org/grpc"
 )
 

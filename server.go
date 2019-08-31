@@ -7,16 +7,16 @@ import (
 	"net"
 
 	lis "github.com/thanhdvit/hr/db/lis"
-	hrpd "github.com/thanhdvit/hr/hello"
+	"github.com/thanhdvit/hr/proto"
 	grpc "google.golang.org/grpc"
 )
 
 type EmployeeServiceServer struct {
 }
 
-func (s *EmployeeServiceServer) ReadBlog(ctx context.Context, req *hrpd.EmployeeReq) (*hrpd.EmployeeRes, error) {
-	response := &hrpd.EmployeeRes{
-		Employee: &hrpd.EmployeeReq{
+func (s *EmployeeServiceServer) ReadBlog(ctx context.Context, req *proto.EmployeeReq) (*proto.EmployeeRes, error) {
+	response := &proto.EmployeeRes{
+		Employee: &proto.EmployeeReq{
 			EmployeeId: 1,
 		},
 	}
@@ -31,7 +31,7 @@ func main() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 	s := grpc.NewServer()
-	hrpd.RegisterServiceServer(s, &EmployeeServiceServer{})
+	proto.RegisterEmployeeServiceServer(s, &EmployeeServiceServer{})
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}
